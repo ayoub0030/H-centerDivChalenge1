@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Center Challenge - Master CSS Centering!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Perfect Center Challenge</h1>
+            <div class="top-players">
+                <div class="player-list">
+                    <div class="player"><span class="rank">1</span><span class="name">Alex</span><span class="score">2500</span></div>
+                    <div class="player"><span class="rank">2</span><span class="name">Sarah</span><span class="score">2350</span></div>
+                    <div class="player"><span class="rank">3</span><span class="name">Mike</span><span class="score">2200</span></div>
+                    <div class="player"><span class="rank">4</span><span class="name">Emma</span><span class="score">2150</span></div>
+                    <div class="player"><span class="rank">5</span><span class="name">John</span><span class="score">2100</span></div>
+                    <div class="player"><span class="rank">6</span><span class="name">Lisa</span><span class="score">2050</span></div>
+                    <div class="player"><span class="rank">7</span><span class="name">David</span><span class="score">2000</span></div>
+                    <div class="player"><span class="rank">8</span><span class="name">Anna</span><span class="score">1950</span></div>
+                    <div class="player"><span class="rank">9</span><span class="name">Tom</span><span class="score">1900</span></div>
+                    <div class="player"><span class="rank">10</span><span class="name">Julia</span><span class="score">1850</span></div>
+                </div>
+            </div>
+            <div class="score-timer">
+                <div class="timer"><i class="fas fa-clock"></i> Time: <span id="timer">30</span>s</div>
+                <div class="score"><i class="fas fa-star"></i> Score: <span id="score">0</span></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-sidebar">
+                <div class="powerups-section">
+                    <h3><i class="fas fa-bolt"></i> Power-ups</h3>
+                    <div class="powerup" data-powerup="time">
+                        <i class="fas fa-clock"></i>
+                        <span>Extra Time</span>
+                        <div class="powerup-count">0</div>
+                    </div>
+                    <div class="powerup" data-powerup="hint">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Hint</span>
+                        <div class="powerup-count">0</div>
+                    </div>
+                    <div class="powerup" data-powerup="skip">
+                        <i class="fas fa-forward"></i>
+                        <span>Skip Level</span>
+                        <div class="powerup-count">0</div>
+                    </div>
+                </div>
+
+                <div class="achievements-section">
+                    <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                    <div class="achievements-list">
+                        <div class="achievement locked" data-achievement="speed">
+                            <i class="fas fa-medal"></i>
+                            <span>Speed Demon</span>
+                        </div>
+                        <div class="achievement locked" data-achievement="trivia">
+                            <i class="fas fa-brain"></i>
+                            <span>CSS Master</span>
+                        </div>
+                        <div class="achievement locked" data-achievement="perfect">
+                            <i class="fas fa-crown"></i>
+                            <span>Perfect Score</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="level-info">
+                    <h2>Level <span id="current-level">1</span></h2>
+                    <p id="level-description">Center the green box using margin: auto</p>
+                </div>
+
+                <div class="game-workspace">
+                    <div class="code-editor-section">
+                        <div class="editor-header">
+                            <h3>Your CSS Code:</h3>
+                            <button id="submit-btn">Test Solution</button>
+                        </div>
+                        <textarea id="code-editor"></textarea>
+                    </div>
+
+                    <div class="preview-section">
+                        <h3>Preview</h3>
+                        <div class="challenge-container">
+                            <div class="target-box"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Trivia Modal -->
+    <div id="trivia-modal" class="modal">
+        <div class="modal-content">
+            <h2>CSS Trivia Challenge!</h2>
+            <div class="trivia-timer">
+                <div class="timer-bar"></div>
+                <span class="timer-text">20</span>
+            </div>
+            <div class="question-container">
+                <p class="question"></p>
+                <div class="answers"></div>
+            </div>
+            <div class="trivia-feedback"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="game.js"></script>
+
+    <section class="testimonials">
+        <h2>What Our Top Players Say</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="avatar">
+                        <i class="fas fa-smile-beam"></i>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>Alex</h3>
+                        <span class="rank">#1 Player</span>
+                    </div>
+                </div>
+                <p>"This game completely transformed how I understand CSS centering! The interactive challenges make learning fun, and I love competing with other players. Now I can center divs in my sleep! 😄"</p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="avatar">
+                        <i class="fas fa-grin-stars"></i>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>Sarah</h3>
+                        <span class="rank">#2 Player</span>
+                    </div>
+                </div>
+                <p>"The Perfect Center Challenge is brilliant! The mix of practical challenges and CSS trivia keeps me engaged. It's amazing how something as simple as centering can become such an addictive game. 🚀"</p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Perfect Center Challenge</h4>
+                <p>Master the art of CSS centering through interactive challenges and fun gameplay!</p>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Perfect Center Challenge. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
